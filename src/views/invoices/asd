@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .color-green {
+            color: green;
+        }
+
+        .color-red {
+            color: red;
+        }
+
+        .color-gray {
+            color: gray;
+        }
+
+        .color-orange {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Invoice #</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+    </thead>
+    <tbody>
+
+        <?php use App\Enums\InvoiceStatus; ?>       
+        <?php if(empty($invoices)): ?>
+            <tr><td colspan="4">No Invoices Found</td></tr>
+        <?php else: ?>
+        <?php
+            foreach ($invoices as $invoice): ?>
+                <tr>
+                    <td><?= $invoice['invoice_number'] ?></td>
+                    <td>$<?= number_format($invoice['amount'], 2) ?></td>
+                        
+                    <td class="<?= InvoiceStatus::tryFrom($invoice['status'])->color()->getClass() ?>">
+                                <?= InvoiceStatus::tryFrom($invoice['status'])->toString() ?></td>
+                </tr>
+            <?php endforeach ?>
+            <?php endif ?>
+        </tbody>
+    </table>
+</body>
+</html>

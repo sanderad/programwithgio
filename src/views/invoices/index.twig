@@ -1,0 +1,26 @@
+    <style>
+        table {
+            width: 100%;
+        }
+    </style>
+<table>
+    <thead>
+        <tr>
+            <th>Invoice #</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+            <tr>
+                <td>{{ invoice.invoice_number }} </td>
+                <td>{{ invoice.amount|format_currency('USD')}} </td>
+                <td>{{ invoice.status }} </td>
+            </tr>
+
+        {% else %}
+            <tr><td colspan="4">No Invoices Found</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
