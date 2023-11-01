@@ -1,5 +1,4 @@
-src/vendor
+vendor
 html
 .vscode
 docker/storage
-src/storage
