@@ -14,7 +14,7 @@ return [
     /*doctrine will try to locate the migration files from this paths */
     /* NAMESPACE => PATH */
     'migrations_paths' => [
-        'Migrations' => './migrations',
+        'Migrations' => '/migrations',
     ], 
 
     'all_or_nothing' => true,
