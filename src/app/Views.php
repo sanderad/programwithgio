@@ -5,6 +5,7 @@ declare (strict_types = 1);
 namespace  App;
 
 use App\Exceptions\ViewNotFoundException;
+use Exception;
 
 class Views
 {
@@ -21,7 +22,7 @@ class Views
         $viewPath = VIEWS_PATH . $this->view . '.php';
 
         if (! file_exists($viewPath)) {
-            throw new ViewNotFoundException();
+            throw new Exception('file does not exist');
         }
 
         /*this is going to do the same thing as the foreach */
