@@ -21,6 +21,8 @@ return [
     'transactional' => true,
     'check_database_platform' => true,
     'organize_migrations' => 'none',
-    'connection' => null,
+    'connection' => [
+        'url' => 'pdo_mysql://root:root@localhost/my_db',
+    ],
     'em' => null,
 ];
