@@ -30,8 +30,14 @@ $params = [
 ];
 
 /*creating the entityManeger which will mainly set the conection with the database and we are also acessing our entities so that we can create more organized and binded queries with multiple tables */
-$entityManager = new EntityManager(
+/*$entityManager = new EntityManager(
     DriverManager::getConnection($params), ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/app/Entity'])
+);*/
+
+$connection = DriverManager::getConnection($params);
+$entityManager = new EntityManager(
+    $connection,
+    ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/app/Entity'])
 );
 
 return DependencyFactory::fromEntityManager($config, new ExistingEntityManager($entityManager));

@@ -35,11 +35,11 @@ $params = [
 ];
 
 /*creating the entityManeger which will mainly set the conection with the database and we are also acessing our entities so that we can create more organized and binded queries with multiple tables */
-$entityManager = new EntityManager(
+/*$entityManager = new EntityManager(
     DriverManager::getConnection($params), ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/Entity'])
 );
 try {
-$entityManager->beginTransaction();
+$entityManager->beginTransaction();*/
 
 $queryBuilder = $entityManager->createQueryBuilder();
 
@@ -90,9 +90,10 @@ foreach($invoices as $invoice) {
       }
 }
 
-
+/*
 $entityManager->commit();
 } catch (FailedParamsException $e) {
     $entityManager->rollback();
     echo $e->getMessage();
 }
+*/
