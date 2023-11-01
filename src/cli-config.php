@@ -26,7 +26,7 @@ $params = [
     'user' => $_ENV['DB_USER'],
     'password' => $_ENV['DB_PASS'],
     'dbname' => $_ENV['DB_DATABASE'],
-    'driver' => $_ENV['DB_DRIVER'] ?? 'pdo_mysql'
+    'driver' => 'pdo_mysql'
 ];
 
 /*creating the entityManeger which will mainly set the conection with the database and we are also acessing our entities so that we can create more organized and binded queries with multiple tables */
