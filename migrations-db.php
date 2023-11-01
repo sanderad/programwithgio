@@ -22,7 +22,7 @@ return [
     'check_database_platform' => true,
     'organize_migrations' => 'none',
     'connection' => [
-        'url' => 'ysql://root:root@localhost/my_db',
+        'url' => 'mysql://root:root@localhost/my_db',
         'driver' => 'pdo_mysql',
     ],
     'em' => null,

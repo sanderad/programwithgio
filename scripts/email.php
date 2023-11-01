@@ -1,5 +1,5 @@
 <?php
-
+/*
 declare(strict_types = 1);
 
 use App\App;
@@ -12,4 +12,4 @@ $container = new Container();
 
 (new App($container))->boot();
 
-$container->get(EmailService::class)->sendQueuedEmails();
+$container->get(EmailService::class)->sendQueuedEmails();*/
