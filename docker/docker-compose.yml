@@ -42,7 +42,7 @@ services:
     container_name: programwithgio-cron
     build: ./cron
     volumes:
-      - ../src:/var/www
+      - ../:/var/www
       - ./log/cron:/var/log/cron
   db2:
     container_name: programwithgio-db2

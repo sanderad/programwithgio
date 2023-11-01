@@ -1,4 +1,6 @@
+docker/log
 vendor
 html
 .vscode
 docker/storage
+app/.env
