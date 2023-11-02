@@ -6,7 +6,6 @@ use App\Controllers\HomeController;
 use App\Controllers\InvoicesController;
 use App\Controllers\PracticeController;
 use App\Controllers\UsersController;
-use App\DbCredentials;
 use App\Router;
 use Illuminate\Container\Container;
 

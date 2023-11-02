@@ -10,7 +10,7 @@ use App\Services\Emailable\EmailValidationService;
 use App\Services\PaymentGatewayService;
 use App\Services\PaymentGatewayServiceInterface;
 use Dotenv\Dotenv;
-use Illuminate\Contracts\Container\Container;
+use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
 use Symfony\Component\Mailer\MailerInterface;
@@ -20,9 +20,8 @@ use Twig\Extra\Intl\IntlExtension;
 
 class App
 {
-
-
     private DbCredentials $dbCredentials;
+
     public function __construct(
         protected Container $container,
         protected ?Router $router = null, 
@@ -38,44 +37,42 @@ class App
     {
         $capsule = new Capsule();
 
-    $dotenv = Dotenv::createImmutable(__DIR__) ;
-    $dotenv->load();
-
+        $capsule->addConnection($dbCredentials);
  
+        // Set the event dispatcher used by Eloquent models... (optional)
+        $capsule->setEventDispatcher(new Dispatcher($this->container));
 
-    $capsule->addConnection($dbCredentials);
- 
-    // Set the event dispatcher used by Eloquent models... (optional)
-    $capsule->setEventDispatcher(new Dispatcher($this->container));
+        // Make this Capsule instance available globally via static methods... (optional)
+        $capsule->setAsGlobal();
 
-    // Make this Capsule instance available globally via static methods... (optional)
-    $capsule->setAsGlobal();
-
-    // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
-    $capsule->bootEloquent();
+        // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+        $capsule->bootEloquent();
     }
 
     public function boot(): static
     {
-        $dotenv = Dotenv::createImmutable(dirname(__DIR__) . '/app/');
+        $dotenv = Dotenv::createImmutable(dirname(__DIR__));
         $dotenv->load();
 
         $this->dbCredentials = new DbCredentials($_ENV);
 
         $this->initDb($this->dbCredentials->db);
 
-        $loader = new FilesystemLoader(VIEWS_PATH);
-        $twig = new Environment($loader, [
-            'cache' => STORAGE_PATH . '/cache',
-            'auto_reload' => true
-        ]);
+        $twig = new Environment(
+            new FilesystemLoader(VIEWS_PATH),
+            [
+                'cache' => STORAGE_PATH . '/cache',
+                'auto_reload' => true,
+            ]
+        );
 
         
         $twig->addExtension(new IntlExtension());
 
-        $this->container->bind(
+        /*$this->container->bind(
             PaymentGatewayServiceInterface::class, 
-            PaymentGatewayService::class);
+            PaymentGatewayService::class);*/
+
         $this->container->singleton(Environment::class, fn() => $twig);
 
         $this->container->bind(MailerInterface::class, fn() => new CustomMailer($this->dbCredentials->mailer['dsn']));
