@@ -14,7 +14,6 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
-use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity()]
@@ -91,6 +90,17 @@ class Invoice
     public function setCreatedAt(DateTime $createdAt): Invoice
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    public function getDueDate(): DateTime
+    {
+        return $this->dueDate;
+    }
+
+    public function setDueDate(DateTime $dueDate): Invoice
+    {
+        $this->dueDate = $dueDate;
         return $this;
     }
 
