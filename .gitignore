@@ -3,3 +3,4 @@ vendor
 html
 .vscode
 docker/storage
+.env
