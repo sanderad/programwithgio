@@ -5,6 +5,7 @@ declare (strict_types = 1);
 namespace App\Controllers;
 
 use App\App;
+use App\Attributes\Get;
 use App\Attributes\Post;
 use App\Attributes\Put;
 use App\Attributes\Route;
@@ -35,9 +36,9 @@ class HomeController
         
         return Views::make('methodForLearningContainer');
     }
-    #[Route('/')]
-    #[Route(routePath:'/home')]
-    #[Route(routePath: '/si')]
+    #[Get('/')]
+    #[Get(routePath:'/home')]
+    #[Get(routePath: '/si')]
     public function index(): Views
     {   
         throw new RuntimeException('Test');
