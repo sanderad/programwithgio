@@ -24,25 +24,18 @@ use Throwable;
 
 class HomeController
 {   
-
-    public function __construct(private InvoiceService $invoiceService) {
-    }
-
-    
-
+    /*
     public function methodForLearningContainer(): Views
     {
         $this->invoiceService->process([], 25);
         
         return Views::make('methodForLearningContainer');
-    }
+    }*/
     #[Get('/')]
     #[Get(routePath:'/home')]
     #[Get(routePath: '/si')]
     public function index(): Views
-    {   
-        throw new RuntimeException('Test');
-
+    { 
         return Views::make('index');
     }
 

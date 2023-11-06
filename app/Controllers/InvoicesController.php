@@ -20,7 +20,8 @@ class InvoicesController
 
     #[Get('/invoices')]
     public function index()
-    { 
+    {
+        exit;
         $invoices = Invoice::query()->where('status', InvoiceStatus::Paid)->get()->toArray();
         
         return $this->twig->render('invoices/index.twig', ['invoices' => $invoices]);

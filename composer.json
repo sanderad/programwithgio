@@ -10,6 +10,7 @@
         "doctrine/migrations": "^3.6",
         "illuminate/database": "^10.30",
         "illuminate/events": "^10.30",
+        "guzzlehttp/guzzle": "7.4",
         "twig/twig": "^3.7",
         "twig/intl-extra": "^3.7"
     },
